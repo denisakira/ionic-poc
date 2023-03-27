@@ -1,0 +1,107 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>User Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" #form="ngForm">
+      <ion-item>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input formControlName="firstName" type="text" required></ion-input>
+      </ion-item>
+
+      <div *ngIf="userForm.get('firstName')?.hasError('required') && userForm.get('firstName')?.dirty && form.submitted" class="error">
+        First Name is required.
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input formControlName="lastName" type="text" required></ion-input>
+      </ion-item>
+
+      <div *ngIf="userForm.get('lastName')?.hasError('required') && userForm.get('lastName')?.dirty && form.submitted" class="error">
+        Last Name is required.
+      </div>
+
+      <ion-item>
+        <ion-label>Date of Birth</ion-label>
+        <ion-datetime-button datetime="datetime" aria-placeholder="Date">Date of Birth</ion-datetime-button>
+
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime [showDefaultButtons]="true" formControlName="dateOfBirth" presentation="date"
+              id="datetime">Date</ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <div *ngIf="userForm.get('dateOfBirth')?.hasError('required') && userForm.get('dateOfBirth')?.dirty && form.submitted" class="error">
+        Date Of Birth is required.
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Street</ion-label>
+        <ion-input formControlName="street" type="text" required></ion-input>
+      </ion-item>
+
+      <div *ngIf="userForm.get('street')?.hasError('required') && userForm.get('street')?.dirty && form.submitted" class="error">
+        Street is required.
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">City</ion-label>
+        <ion-input formControlName="city" type="text" required></ion-input>
+      </ion-item>
+
+      <div *ngIf="userForm.get('city')?.hasError('required') && userForm.get('city')?.dirty && form.submitted" class="error">
+        City is required.
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">State</ion-label>
+        <ion-input formControlName="state" type="text" required></ion-input>
+      </ion-item>
+
+      <div *ngIf="userForm.get('state')?.hasError('required') && userForm.get('state')?.dirty && form.submitted" class="error">
+        State is required.
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Job Title</ion-label>
+        <ion-input formControlName="jobTitle" type="text" required></ion-input>
+      </ion-item>
+
+      <div *ngIf="userForm.get('jobTitle')?.hasError('required') && userForm.get('jobTitle')?.dirty && form.submitted" class="error">
+        Job Title is required.
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input formControlName="phone" type="text" required></ion-input>
+      </ion-item>
+
+      <div *ngIf="userForm.get('phone')?.hasError('required') && userForm.get('phone')?.dirty && form.submitted" class="error">
+        Phone is required.
+      </div>
+
+      <ion-item (click)="uploadPhoto()">
+        <ion-label>Image</ion-label>
+        <ion-icon name="camera"></ion-icon>
+      </ion-item>
+
+      <ion-img *ngIf="photo$$ | async" [src]="photo$$ | async"></ion-img>
+
+      <div class="button-container">
+        <ion-button type="submit">
+          Save
+        </ion-button>
+      </div>
+
+    </form>
+
+  </div>
+
+</ion-content>

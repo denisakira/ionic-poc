@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>User Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+
+    <ng-container *ngIf="(users$ | async) as users">
+
+      <ng-container *ngFor="let user of users">
+
+        <ion-card>
+          <ion-img *ngIf="user.photo" alt="photo" [src]="user.photo"></ion-img>
+
+          <ion-card-header>
+            <ion-card-title>{{ user.firstName}}</ion-card-title>
+            <ion-card-subtitle>{{ user.lastName }}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            Address: {{ user.street }} - {{ user.city }} - {{ user.state }}
+            <br>
+            Job Title: {{ user.jobTitle }}
+            <br>
+            Date of Birth: {{ user.dateOfBirth | date: 'MM/dd/yyyy' }}
+            <br>
+            Phone: {{ user.phone }}
+          </ion-card-content>
+        </ion-card>
+
+      </ng-container>
+
+    </ng-container>
+
+  </div>
+</ion-content>

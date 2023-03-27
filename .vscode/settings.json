@@ -1,0 +1,7 @@
+{
+  "vsicons.presets.angular": true,
+  "eslint.workingDirectories": [
+    "./api",
+    "./client",
+  ],
+}
