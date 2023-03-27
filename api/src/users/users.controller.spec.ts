@@ -6,6 +6,7 @@ import { UsersService } from './users.service';
 const createUserDto: CreateUserDto = {
   firstName: 'firstName #1',
   lastName: 'lastName #1',
+  dateOfBirth: 'dateOfBirth #1',
   street: 'street #1',
   city: 'city #1',
   state: 'state #1',

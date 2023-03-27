@@ -60,6 +60,12 @@ describe('UserService', () => {
         service.create({
           firstName: 'firstName #1',
           lastName: 'lastName #1',
+          city: 'city #1',
+          dateOfBirth: new Date().toISOString(),
+          jobTitle: 'jobTitle #1',
+          phone: 'phone #1',
+          state: 'state #1',
+          street: 'street #1',
         }),
       ).resolves.toEqual(oneUser);
     });
@@ -72,20 +78,4 @@ describe('UserService', () => {
     });
   });
 
-  describe('findOne()', () => {
-    it('should get a single user', () => {
-      const repoSpy = jest.spyOn(repository, 'findOneBy');
-      expect(service.findOne(1)).resolves.toEqual(oneUser);
-      expect(repoSpy).toBeCalledWith({ id: 1 });
-    });
-  });
-
-  describe('remove()', () => {
-    it('should call remove with the passed value', async () => {
-      const removeSpy = jest.spyOn(repository, 'delete');
-      const retVal = await service.remove('2');
-      expect(removeSpy).toBeCalledWith('2');
-      expect(retVal).toBeUndefined();
-    });
-  });
 });

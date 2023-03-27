@@ -2,7 +2,7 @@ import { User, UserService } from './../services/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { BehaviorSubject, finalize } from 'rxjs';
+import { BehaviorSubject, finalize, take } from 'rxjs';
 
 @Component({
   selector: 'app-user-form-tab',
@@ -35,6 +35,7 @@ export class UserFormTabPage {
     }
 
     this.userService.createUser(this.userForm.value).pipe(
+      take(1),
       finalize(() => {
         this.userForm.reset();
         this.photo$$.next(undefined);
